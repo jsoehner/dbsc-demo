@@ -13,6 +13,15 @@ echo "==========================================="
 echo "[*] Stopping and removing any existing demo containers..."
 docker stop dbsc-demo 2>/dev/null
 docker rm dbsc-demo 2>/dev/null
+docker-compose down 2>/dev/null
+
+echo "[*] Checking for any other containers using port $PORT..."
+CONFLICTING_CONTAINERS=$(docker ps -q --filter "publish=$PORT")
+if [ ! -z "$CONFLICTING_CONTAINERS" ]; then
+    echo "[*] Stopping conflicting containers on port $PORT..."
+    docker stop $CONFLICTING_CONTAINERS
+    docker rm $CONFLICTING_CONTAINERS
+fi
 
 echo "[*] Pulling the latest image from Docker Hub: $IMAGE_NAME"
 docker pull $IMAGE_NAME

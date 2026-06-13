@@ -16,10 +16,19 @@
     <main class="container">
         
         <!-- Instruction Panel (Left) -->
-        <section class="panel instruction-panel">
+        <section class="panel instruction-panel" style="display: flex; flex-direction: column;">
             <h2 id="instruction-title"><span class="icon">📋</span> Servers with DBSC enabled</h2>
-            <div id="instruction-content" class="instructions">
+            <div id="instruction-content" class="instructions" style="flex: 1; overflow-y: auto;">
                 <!-- Dynamically populated by JS -->
+            </div>
+            
+            <div class="card terminal payload-example" style="flex: 0 0 33%; margin-bottom: 0; display: flex; flex-direction: column;">
+                <div class="terminal-header">
+                    <span class="title">Example Payload (DBSC)</span>
+                </div>
+                <div class="terminal-body" id="example-payload">
+                    <div class="text-gray">Waiting for request...</div>
+                </div>
             </div>
         </section>
 
@@ -55,7 +64,7 @@
                     <p><strong>The Story:</strong> Alice wants to view her sensitive data. The browser proves it still has the hardware key by signing the request.</p>
                 </div>
 
-                <button onclick="fetchData()" class="btn-secondary">Fetch Sensitive Data</button>
+                <button onclick="fetchData()" id="btn-fetch-data" class="btn-secondary">Fetch Sensitive Data</button>
                 <div id="victim-data" class="output-box">No data fetched yet.</div>
                 
                 <hr class="divider">
@@ -67,7 +76,7 @@
                 <button class="btn-danger" onclick="stealCookie()">Execute Malware (Exfiltrate Cookie)</button>
                 
                 <div style="margin-top: 15px;">
-                    <button onclick="logout()" class="btn-secondary btn-small">Logout</button>
+                    <button onclick="logout()" id="btn-logout" class="btn-secondary btn-small">Logout</button>
                 </div>
             </div>
 
@@ -101,7 +110,7 @@
                     <div class="text-gray">[+] Listening for exfiltrated cookies on port 80...</div>
                 </div>
                 <div class="terminal-actions">
-                    <button onclick="checkStolenCookie()" class="btn-terminal">Check Drop Server</button>
+                    <button onclick="checkStolenCookie()" id="btn-check-cookie" class="btn-terminal">Check Drop Server</button>
                     <button onclick="useStolenCookie()" id="btn-use-cookie" class="btn-terminal-danger" disabled>Attempt to use Stolen Cookie</button>
                 </div>
             </div>

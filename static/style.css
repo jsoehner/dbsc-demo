@@ -32,15 +32,15 @@ body {
 
 header {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 0.6rem 1rem;
     background: linear-gradient(to right, #1e293b, #0f172a);
     border-bottom: 1px solid var(--border);
 }
 
 header h1 {
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
     background: -webkit-linear-gradient(#60a5fa, #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -48,14 +48,15 @@ header h1 {
 
 header p {
     color: var(--text-secondary);
+    font-size: 0.85rem;
 }
 
 .container {
-    display: flex;
-    flex: 1;
-    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
     gap: 1.5rem;
-    max-width: 1800px; /* Increased to accommodate 3 columns */
+    padding: 2rem;
+    max-width: 1600px;
     margin: 0 auto;
     width: 100%;
 }
@@ -371,9 +372,97 @@ button {
     border-color: #555;
     color: #555;
 }
+.hacker-panel {
+    grid-column: 1 / -1;
+}
 
 @media (max-width: 1024px) {
     .container {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
+}
+
+/* Chat Bubble Styles */
+.chat-bubble {
+    position: relative;
+    background: #1e3a8a;
+    border-radius: 8px;
+    padding: 12px;
+    color: #bfdbfe;
+    margin: 10px 0;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+    animation: fadeIn 0.5s ease-in-out;
+    border: 1px solid #3b82f6;
+    font-family: monospace;
+}
+
+.chat-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top-color: #3b82f6;
+    border-bottom: 0;
+    margin-bottom: -8px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-bubble pre {
+    margin-top: 5px;
+    color: #e2e8f0;
+    background: rgba(0,0,0,0.2);
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Tutorial Balloon Styles */
+.tutorial-balloon {
+    position: absolute;
+    background: #1e3a8a;
+    border: 1px solid #3b82f6;
+    border-radius: 8px;
+    padding: 12px;
+    color: #bfdbfe;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+    z-index: 1000;
+    max-width: 250px;
+    animation: fadeIn 0.3s ease;
+    text-align: center;
+}
+
+.tutorial-balloon::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    border: 8px solid transparent;
+    border-top-color: #3b82f6;
+}
+
+.balloon-message {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.balloon-close-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.balloon-close-btn:hover {
+    background: #2563eb;
 }
