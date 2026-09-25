@@ -2,6 +2,7 @@ import os
 import uuid
 import time
 import json
+import math
 from flask import Flask, request, jsonify, make_response, render_template
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
@@ -37,7 +38,7 @@ def login():
     }
     
     resp = make_response(jsonify({"message": "Logged in successfully", "dbsc_enabled": bool(dbsc_public_key)}))
-    resp.set_cookie('session_id', session_id, httponly=True)
+    resp.set_cookie('session_id', session_id, httponly=True, secure=True, samesite='Lax')
     return resp
 
 @app.route('/data', methods=['GET'])
@@ -59,10 +60,13 @@ def get_data():
             
         # Verify timestamp freshness (e.g., within 5 minutes)
         try:
-            ts_float = float(timestamp)
-            if abs(time.time() - ts_float) > 300:
+            from decimal import Decimal, InvalidOperation
+            ts_dec = Decimal(timestamp)
+            if ts_dec.is_nan() or ts_dec.is_infinite():
+                return jsonify({"error": "DBSC Error: Invalid timestamp"}), 400
+            if abs(Decimal(str(time.time())) - ts_dec) > 300:
                 return jsonify({"error": "DBSC Error: Timestamp expired"}), 401
-        except ValueError:
+        except (InvalidOperation, TypeError):
             return jsonify({"error": "DBSC Error: Invalid timestamp"}), 400
             
         # Verify signature
@@ -164,4 +168,7 @@ def hacker_access():
     return jsonify({"message": f"Hacker Success! Accessed sensitive data for user {session_data['user']} using stolen cookie."})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    debug_mode = os.getenv("FLASK_DEBUG", "false").lower() == "true"
+    host_addr = os.getenv("FLASK_HOST", "127.0.0.1")
+    port_num = int(os.getenv("PORT", "5000"))
+    app.run(debug=debug_mode, host=host_addr, port=port_num)
