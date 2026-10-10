@@ -41,3 +41,7 @@ It specifically highlights how standard HTTP cookies are vulnerable to theft and
 
 ## Why this matters
 Traditional sessions rely on a single bearer token (the cookie). If that token is stolen via malware or XSS, it can be replayed from anywhere. DBSC fundamentally changes this by requiring Proof-of-Possession of a cryptographic key tightly bound to the user's specific device hardware (like a TPM or Secure Enclave).
+
+
+## 🛡️ Security & Cryptographic Posture
+This project tracks Software & Cryptographic Bill of Materials (SBOM & CBOM) and Post-Quantum Cryptography (PQC) readiness. See the latest [Cryptographic Audit & PQC Migration Report](docs/security/CRYPTOGRAPHIC_AUDIT.md).
