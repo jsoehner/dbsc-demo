@@ -5,6 +5,7 @@ This directory documents key architectural decisions made in `dbsc-demo`.
 | ADR | Title | Status | Date |
 | :--- | :--- | :--- | :--- |
 | [0001](0001-ci-docker-build-and-security-testing-resilience.md) | CI Docker Build and Security Testing Workflow Resilience | Accepted | 2026-09-19 |
-| [0002](0002-consolidate-security-governance-and-pin-workflow-shas.md) | Consolidate Security Governance, Pin Action SHAs, and Harden Application Container | Accepted | 2026-09-25 |
+| [0002](0002-automated-sbom-cbom-supply-chain-governance.md) | Automated SBOM and CBOM Supply Chain Governance | Accepted | 2026-10-11 |
+| [0002 (Security Governance)](0002-consolidate-security-governance-and-pin-workflow-shas.md) | Consolidate Security Governance, Pin Action SHAs, and Harden Application Container | Accepted | 2026-09-25 |
 | [0003](0003-dual-engine-bom-governance-and-workflow-standardization.md) | Dual-Engine BOM Governance, Action Pinning, and Workflow Standardization | Accepted | 2026-09-27 |
 
