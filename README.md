@@ -1,5 +1,9 @@
 # DBSC Session Binding Demo
 
+[![Build & Functional Verification](https://img.shields.io/badge/Build%20%26%20Functional%20Verification-2026--11--20%20PASS-brightgreen)](docs/BUILD_VERIFICATION.md)
+
+> Verified functional on `2026-11-20` by **Jeffs' Automated build and deploy agent** — see [`docs/BUILD_VERIFICATION.md`](docs/BUILD_VERIFICATION.md).
+
 This project provides a Dockerized web application designed to demonstrate the security benefits of Device Bound Session Credentials (DBSC). 
 
 It specifically highlights how standard HTTP cookies are vulnerable to theft and replay attacks, and how "Session Binding" (tying a session to a cryptographic hardware key) mitigates this vulnerability.
